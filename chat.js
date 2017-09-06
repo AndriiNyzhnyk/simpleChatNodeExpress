@@ -7,6 +7,10 @@ exports.subscribe = (req, res) => {
     res.on('close', () => {
         clients.splice(clients.indexOf(res), 1);
     });
+
+    res.on('end', () => {
+        clients.splice(clients.indexOf(res), 1);
+    });
 };
 
 exports.publish = (message) => {

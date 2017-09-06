@@ -24,6 +24,7 @@ app.post("/publish", (req, res) => {
         }
 
         if (body.length > 1e4) {
+            res.setHeader("content-type", "text/plain");
             res.status(413);
             res.send("Your message is too big for my little chat");
         }
@@ -32,12 +33,14 @@ app.post("/publish", (req, res) => {
             try {
                 body = JSON.parse(body);
             } catch (e) {
+                res.setHeader("content-type", "text/plain");
                 res.status(400);
                 res.send("Bad Request");
                 return;
             }
 
             chat.publish(body.message);
+            res.setHeader("content-type", "text/plain");
             res.send("ok");
         });
 });
@@ -48,6 +51,7 @@ app.use((req, res, next) => {
     res.type("text/plain");
     res.send("404");
 });
+
 // Обробник 505 помилки
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -61,11 +65,11 @@ app.listen(app.get('port'), function(){
         app.get('port') + '; нажміть Ctrl+C для завершення.' );
 });
 
-
 function sendFile(fileName, res) {
     let fileStream = fs.createReadStream(fileName);
     fileStream
         .on('error', () => {
+            res.setHeader("content-type", "text/plain");
             res.status(500);
             res.send("Server error");
         })
