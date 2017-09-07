@@ -1,0 +1,39 @@
+body {
+    font-family: Arial;
+    font-size: 1.7em;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    margin: 10px 0;
+}
+
+#menuChat {
+    padding: 12px;
+    margin: 0 30px;
+}
+
+#inputMessage {
+    width: 300px;
+    height: 35px;
+    font-size: 0.9em;
+}
+
+#submit {
+    height: 35px;
+    font-size: 0.9em;
+}
+
+#withoutBlockMessages {
+    padding: 12px;
+    background-color: silver;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#blockMessages {
+    background-color: white;
+    min-height: 100px;
+}
+
