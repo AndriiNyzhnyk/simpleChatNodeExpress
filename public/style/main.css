@@ -61,3 +61,7 @@ ul li {
 #blockMessages {
     float: left;
 }
+
+#blockMessages ul li {
+    list-style-type: square;
+}
