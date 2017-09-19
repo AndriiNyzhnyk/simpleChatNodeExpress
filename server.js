@@ -6,8 +6,13 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
-app.get("/", function(req, res){
+app.get("/", (req, res) => {
     sendFile("/index.html", res);
+});
+
+app.get("/date", (req, res) => {
+    let now = timeSendMessage();
+    res.send(now);
 });
 
 app.post("/subscribe", (req, res) => {
@@ -60,21 +65,39 @@ app.use((err, req, res, next) => {
     res.send("500");
 });
 
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'), () => {
     console.log( 'Express запущенний на http://localhost:' +
         app.get('port') + '; нажміть Ctrl+C для завершення.' );
 });
 
-function sendFile(fileName, res) {
-    let fileStream = fs.createReadStream(fileName);
-    fileStream
-        .on('error', () => {
-            res.setHeader("content-type", "text/plain");
-            res.status(500);
-            res.send("Server error");
-        })
-        .pipe(res)
-        .on('close', () => {
-            fileStream.destroy();
-        });
+function timeSendMessage() {
+    let day = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getFullYear();
+    let hours = new Date().getHours();
+    let minutes = new Date().getMinutes();
+
+    if(month < 10) {
+        month = "0" + month;
+    }
+
+    if(minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    return day + "." + month + "." + year + "_" + hours + ":" + minutes;
 }
+
+// function sendFile(fileName, res) {
+//     let fileStream = fs.createReadStream(fileName);
+//     fileStream
+//         .on('error', () => {
+//             res.setHeader("content-type", "text/plain");
+//             res.status(500);
+//             res.send("Server error");
+//         })
+//         .pipe(res)
+//         .on('close', () => {
+//             fileStream.destroy();
+//         });
+// }

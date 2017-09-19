@@ -5,8 +5,18 @@ body {
     padding: 0;
 }
 
+.clear {
+    clear: both;
+}
+
 ul {
     margin: 10px 0;
+    padding: 0;
+}
+
+ul li {
+    list-style-type: none;
+    margin: 2px;
 }
 
 #menuChat {
@@ -26,14 +36,28 @@ ul {
 }
 
 #withoutBlockMessages {
-    padding: 12px;
-    background-color: silver;
     width: 100%;
-    margin-top: 20px;
+    padding: 12px;
+    margin: 0;
+    background-color: silver;
+
+}
+
+#content {
+    background-color: white;
+    min-height: 120px;
+}
+
+#timeMessage {
+    float: left;
+    width: 250px;
+    margin-left: 15px;
+}
+
+#timeMessage ul li {
+    color: lightgreen;
 }
 
 #blockMessages {
-    background-color: white;
-    min-height: 100px;
+    float: left;
 }
-
