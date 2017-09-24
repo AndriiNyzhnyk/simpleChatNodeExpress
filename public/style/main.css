@@ -65,3 +65,7 @@ ul li {
 #blockMessages ul li {
     list-style-type: square;
 }
+
+.lead {
+    margin-left: 40px;
+}
