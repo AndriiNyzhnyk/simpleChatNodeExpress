@@ -71,11 +71,12 @@ app.listen(app.get('port'), () => {
 });
 
 function timeSendMessage() {
-    let day = new Date().getDate();
-    let month = new Date().getMonth();
-    let year = new Date().getFullYear();
-    let hours = new Date().getHours();
-    let minutes = new Date().getMinutes();
+    let now = new Date();
+    let day = now.getDate();
+    let month = now.getMonth();
+    let year = now.getFullYear();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
 
     if(month < 10) {
         month = "0" + month;

@@ -3,7 +3,7 @@ window.onload = () => {
     let messages = document.getElementById("messages");
     let times = document.getElementById("times");
 
-    publish.onsubmit = function () {
+    publish.onsubmit = function() {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/publish", true);
         xhr.send(JSON.stringify({message: this.elements.message.value}));
@@ -17,7 +17,7 @@ window.onload = () => {
         xhr.onreadystatechange = function () {
             if (this.readyState !== 4) return;
             if (this.status !== 200) {
-                setTimeout(subscribe, 500);
+                setTimeout(subscribe, 800);
                 return;
             }
             let li = document.createElement('li');
@@ -29,18 +29,19 @@ window.onload = () => {
         };
         xhr.send(null);
     })();
+
+    function date() {
+        $.ajax({
+            url: "date/",
+            type: "GET",
+            contentType: "text/plain",
+            success: (date) => {
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode(date));
+                times.appendChild(li);
+            }
+        });
+    }
 };
 
 
-function date() {
-    $.ajax({
-        url: "date/",
-        type: "GET",
-        contentType: "text/plain",
-        success: function (date) {
-            let li = document.createElement('li');
-            li.appendChild(document.createTextNode( date ));
-            times.appendChild(li);
-        }
-    });
-}
